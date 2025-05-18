@@ -1,1 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VamaGems Jewelry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b89061;
+            --secondary-color: #f8f0e3;
+            --text-color: #4a4a4a;
+            --heading-color: #333333;
+            --accent-color: #9c6644;
+            --transition-duration: 0.5s;
+            --traditional-font: 'Playfair Display', serif;
+            --card-border-color: #e6e0d4;
+            --header-bg-color: #f5f0e1;
+            --footer-bg-color: #f5f0e1;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: var(--header-bg-color);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: background-color var(--transition-duration);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header:hover {
+            background-color: #e9e4d5;
+        }
+
+        header h1 {
+            color: var(--heading-color);
+            margin: 0 0 5px 0;
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            font-family: var(--traditional-font);
+            transition: font-size var(--transition-duration);
+        }
+
+        header h1:hover {
+            font-size: 3.2em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+            transition: transform var(--transition-duration);
+        }
+
+        nav ul li:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--indian-gold);
+            border-bottom: 2px solid var(--indian-gold);
+        }
+
+        main {
+            padding: 20px;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Product List - Modern Grid */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            border: 1px solid var(--card-border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: border-radius var(--transition-duration);
+        }
+
+        .product-card:hover img {
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product-card h3 {
+            font-size: 1.3em;
+            margin: 10px 0 5px;
+            color: var(--heading-color);
+            transition: color var(--transition-duration);
+            font-family: var(--traditional-font);
+        }
+
+        .product-card:hover h3 {
+            color: var(--accent-color);
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .product-card button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background-color: #96733e;
+        }
+
+        /* Product Detail - Clean Layout */
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-detail img {
+            width: 100%;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .product-detail-info {
+            text-align: left;
+        }
+
+        .product-detail-info h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+            font-family: var(--traditional-font);
+        }
+
+        .product-detail-info p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .product-detail-info button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-detail-info button:hover {
+            background-color: #96733e;
+        }
+
+        /* Cart - Consistent Styling */
+        .cart-items {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        /* Checkout - Modern Form */
+        .checkout-form {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .checkout-form h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--heading-color);
+            font-family: var(--traditional-font);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .checkout-form button {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-form button:hover {
+            background-color: #8328d4;
+        }
+
+        /* Footer - Simple and Centered */
+        footer {
+            background-color: var(--footer-bg-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 1px solid var(--card-border-color);
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #order-confirmation {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #order-confirmation h2 {
+            font-size: 2em;
+            color: var(--heading-color);
+            font-family: var(--traditional-font);
+            margin-bottom: 10px;
+        }
+
+        #order-confirmation p {
+            font-size: 1.1em;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VamaGems</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="products">Products</a></li>
+                <li><a href="#" data-page="cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home-page">
+            <h2>Welcome to VamaGems</h2>
+            <p>Discover exquisite jewelry crafted with passion and precision. Find the perfect piece to express your unique style.</p>
+            <p>Explore our collections of necklaces, earrings, bracelets, and rings.</p>
+        </section>
+
+        <section id="products-page" class="hidden">
+            <h2>Our Products</h2>
+            <div class="product-list">
+                <div class="product-card" data-product-id="1">
+                    <img src="images/necklace1.jpg" alt="Elegant Silver Necklace">
+                    <h3>Silver Necklace</h3>
+                    <p>$150</p>
+                    <button>View Details</button>
+                </div>
+                <div class="product-card" data-product-id="2">
+                    <img src="images/earrings1.jpg" alt="Gold Hoop Earrings">
+                    <h3>Gold Hoop Earrings</h3>
+                    <p>$250</p>
+                    <button>View Details</button>
+                </div>
+                <div class="product-card" data-product-id="3">
+                    <img src="images/bracelet1.jpg" alt="Pearl Bracelet">
+                    <h3>Pearl Bracelet</h3>
+                    <p>$180</p>
+                    <button>View Details</button>
+                </div>
+                <div class="product-card" data-product-id="4">
+                    <img src="images/ring1.jpg" alt="Diamond Ring">
+                    <h3>Diamond Ring</h3>
+                    <p>$500</p>
+                    <button>View Details</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="product-detail-page" class="hidden">
+            <div class="product-detail">
+                <img src="" alt="">
+                <div class="product-detail-info">
+                    <h2 id="product-name"></h2>
+                    <p id="product-description"></p>
+                    <p id="product-price"></p>
+                    <button id="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart-page" class="hidden">
+            <h2>Your Cart</h2>
+            <div id="cart-items" class="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+            <div class="cart-total">
+                Total: $<span id="cart-total-price">0</span>
+            </div>
+            <button id="checkout-btn" class="hidden">Checkout</button>
+        </section>
+
+        <section id="checkout-page" class="hidden">
+            <form id="checkout-form" class="checkout-form">
+                <h2>Checkout</h2>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                 <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit">Submit Order</button>
+            </form>
+            <div id="order-confirmation" class="hidden">
+                  <h2>Order Confirmation</h2>
+                  <p>Thank you for your order! We will process it shortly.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 VamaGems. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Silver Necklace",
+                price: 150,
+                description: "A beautiful silver necklace, perfect for any occasion.",
+                images: ["images/necklace1.jpg", "images/necklace1_2.jpg"],
+            },
+            {
+                id: 2,
+                name: "Gold Hoop Earrings",
+                price: 250,
+                description: "Elegant gold hoop earrings, a classic design.",
+                images: ["images/earrings1.jpg", "images/earrings1_2.jpg"],
+            },
+            {
+                id: 3,
+                name: "Pearl Bracelet",
+                price: 180,
+                description: "A delicate pearl bracelet, adding a touch of sophistication.",
+                images: ["images/bracelet1.jpg", "images/bracelet1_2.jpg"],
+            },
+             {
+                id: 4,
+                name: "Diamond Ring",
+                price: 500,
+                description: "A sparkling diamond ring.",
+                images: ["images/ring1.jpg", "images/ring1_2.jpg"],
+            },
+        ];
+
+        const cart = [];
+        let currentPage = "home";
+        let selectedProductId = null;
+
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById("cart-items");
+            const cartTotalPriceElement = document.getElementById("cart-total-price");
+            const checkoutButton = document.getElementById("checkout-btn");
+            cartItemsDiv.innerHTML = "";
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+                checkoutButton.classList.add("hidden");
+            } else {
+                cart.forEach((item) => {
+                    const cartItemDiv = document.createElement("div");
+                    cartItemDiv.classList.add("cart-item");
+                    cartItemDiv.textContent = `${item.name} - $${item.price}`;
+                    cartItemsDiv.appendChild(cartItemDiv);
+                    totalPrice += item.price;
+                });
+                cartTotalPriceElement.textContent = totalPrice;
+                checkoutButton.classList.remove("hidden");
+            }
+        }
+
+        function showPage(page) {
+            document.querySelectorAll("main > section").forEach((section) => {
+                section.classList.add("hidden");
+            });
+            document.getElementById(`${page}-page`).classList.remove("hidden");
+            currentPage = page;
+             if (currentPage === 'cart') {
+                updateCartDisplay();
+             }
+        }
+
+        function showProductDetails(productId) {
+            selectedProductId = productId;
+            const product = products.find((p) => p.id === productId);
+            if (product) {
+                const productDetailImg = document.querySelector("#product-detail-page img");
+                const productNameElement = document.getElementById("product-name");
+                const productDescriptionElement = document.getElementById("product-description");
+                const productPriceElement = document.getElementById("product-price");
+                productDetailImg.src = product.images[0];
+                productNameElement.textContent = product.name;
+                productDescriptionElement.textContent = product.description;
+                productPriceElement.textContent = `$${product.price}`;
+
+                const addToCartBtn = document.getElementById("add-to-cart-btn");
+                addToCartBtn.onclick = () => {
+                    cart.push(product);
+                    alert(`${product.name} has been added to your cart!`);
+                    updateCartDisplay();
+                    showPage('cart');
+                };
+
+                showPage("product-detail");
+            }
+        }
+
+
+
+        document.querySelectorAll("nav a").forEach((link) => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const page = link.dataset.page;
+                showPage(page);
+            });
+        });
+
+        document.querySelectorAll(".product-card button").forEach((button) => {
+            button.addEventListener("click", (event) => {
+                const productId = parseInt(button.parentElement.dataset.productId);
+                showProductDetails(productId);
+            });
+        });
+
+        // Add this event listener for the checkout button
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            showPage('checkout'); // Show the checkout page
+        });
+
+
+
+        document.getElementById('checkout-form').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+
+
+            // Create order details string
+            let orderDetails = `
+Order Details:
+Name: ${name}
+Phone Number: ${phone}
+Address: ${address}
+Email: ${email}
+Date: ${new Date().toLocaleString()}
+---
+Items:
+`;
+            cart.forEach(item => {
+                orderDetails += `- ${item.name} - $${item.price}
+`;
+            });
+            orderDetails += `
+Total Price: $${document.getElementById('cart-total-price').textContent}
+`;
+
+            // "Send" the data (for the proof of concept, we'll just create a text file)
+            const blob = new Blob([orderDetails], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'order_details.txt'; // Suggest a filename
+            document.body.appendChild(a);  // Append, trigger, and remove
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up the URL object
+
+
+            // Clear the cart
+            cart.length = 0;
+            updateCartDisplay();  // Update the cart display to show it's empty
+            showPage('home'); // Redirect to a confirmation page or home
+            document.getElementById('order-confirmation').classList.remove('hidden');
+
+            // Clear the form
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('email').value = '';
+
+        });
+
+        showPage("home"); // Show the home page initially
+
+    </script>
+</body>
+</html>

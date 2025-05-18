@@ -1,1 +1,426 @@
 
+:root {
+    --primary-color: #b89061;
+    --secondary-color: #f8f0e3;
+    --text-color: #4a4a4a;
+    --heading-color: #333333;
+    --accent-color: #9c6644; /* Used for checkout button */
+    --indian-gold: #FFB300; /* For nav hover, define if not already */
+    --transition-duration: 0.5s;
+    --traditional-font: 'Playfair Display', serif;
+    --card-border-color: #e6e0d4;
+    --header-bg-color: #f5f0e1;
+    --footer-bg-color: #f5f0e1;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Changed from Inter for consistency with Poppins import */
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+header {
+    background-color: var(--header-bg-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color var(--transition-duration);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure header is above other content */
+}
+
+header:hover {
+    background-color: #e9e4d5;
+}
+
+header h1 {
+    color: var(--heading-color);
+    margin: 0 0 5px 0;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-family: var(--traditional-font);
+    transition: font-size var(--transition-duration);
+}
+
+header h1:hover {
+    font-size: 3.2em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+    transition: transform var(--transition-duration);
+}
+
+nav ul li:hover {
+    transform: scale(1.05);
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    color: var(--indian-gold); /* Make sure --indian-gold is defined */
+    border-bottom: 2px solid var(--indian-gold);
+}
+
+main {
+    padding: 20px;
+    min-height: calc(100vh - 200px); /* Adjusted for header and footer */
+}
+
+/* Product List - Modern Grid */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+    border: 1px solid var(--card-border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    max-height: 250px; /* Added to control image height */
+    border-radius: 8px 8px 0 0;
+    aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
+    object-fit: cover;
+    transition: border-radius var(--transition-duration);
+    margin-bottom: 10px;
+}
+
+.product-card:hover img {
+    border-radius: 5px 5px 0 0;
+}
+
+.product-card h3 {
+    font-size: 1.3em;
+    margin: 10px 0 5px;
+    color: var(--heading-color);
+    transition: color var(--transition-duration);
+    font-family: var(--traditional-font);
+}
+
+.product-card:hover h3 {
+    color: var(--accent-color);
+}
+
+.product-card p {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.product-card button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Pushes button to bottom if card content varies */
+}
+
+.product-card button:hover {
+    background-color: #96733e;
+}
+
+/* Product Detail - Clean Layout */
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Default for larger screens */
+    gap: 30px;
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#product-image-gallery img { /* Styles for the main image in the gallery */
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px; /* Space for thumbnails if added later */
+}
+
+.product-detail-info {
+    text-align: left;
+}
+
+.product-detail-info h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+    font-family: var(--traditional-font);
+}
+
+.product-detail-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+#product-specifications {
+    margin-bottom: 15px;
+}
+
+#product-specifications h4 {
+    font-size: 1.2em;
+    color: var(--heading-color);
+    margin-bottom: 8px;
+}
+
+#product-specifications ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#product-specifications li {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    padding-left: 15px;
+    position: relative;
+}
+#product-specifications li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+
+#product-video-container video {
+    width: 100%;
+    max-width: 400px; /* Control video size */
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid var(--card-border-color);
+}
+
+.product-detail-info button { /* Add to cart button */
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.product-detail-info button:hover {
+    background-color: #96733e;
+}
+
+/* Cart - Consistent Styling */
+.cart-items {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 50px; /* Ensure it has some height even when empty */
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+#checkout-btn { /* General button styling, can be more specific if needed */
+    display: inline-block; /* To allow margin-top if cart total is above */
+    background-color: var(--accent-color); /* Different color for checkout */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin-top: 15px; /* Add some space if needed */
+}
+
+#checkout-btn:hover {
+    background-color: #8a5a3c; /* Darker shade of accent */
+}
+
+
+/* Checkout - Modern Form */
+.checkout-form {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.checkout-form h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--heading-color);
+    font-family: var(--traditional-font);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.checkout-form button { /* Submit Order button */
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    display: block; /* Make it block to center it or control width */
+    width: fit-content;
+    margin: 20px auto 0; /* Center the button */
+}
+
+.checkout-form button:hover {
+    background-color: #8a5a3c; /* Darker shade of accent. Original hover was #8328d4, which seemed out of place for the color scheme. */
+}
+
+/* Footer - Simple and Centered */
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px; /* Increased padding */
+    margin-top: 30px; /* Increased margin */
+    border-top: 1px solid var(--card-border-color);
+}
+
+footer p {
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.hidden {
+    display: none !important; /* Ensure hidden class always hides */
+}
+
+#order-confirmation {
+    background-color: #fff;
+    padding: 30px; /* Increased padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 30px auto; /* Centered and with more margin */
+    text-align: center;
+    max-width: 600px; /* Limit width for better readability */
+}
+
+#order-confirmation h2 {
+    font-size: 2.2em; /* Slightly larger */
+    color: var(--heading-color);
+    font-family: var(--traditional-font);
+    margin-bottom: 15px;
+}
+
+#order-confirmation p {
+    font-size: 1.2em; /* Slightly larger */
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments for product detail page */
+@media (max-width: 768px) {
+    .product-detail {
+        grid-template-columns: 1fr; /* Stack image and info on smaller screens */
+    }
+    #product-image-gallery img {
+        max-height: 300px;
+    }
+}
